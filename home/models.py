@@ -10,6 +10,7 @@ class Category(models.Model):
     name = models.CharField(max_length=400)
     slug = models.CharField(max_length=400, unique=True)
     description = models.TextField(blank=True)
+    status = models.CharField(choices=STATUS, max_length=400, blank=True)
     image = models.ImageField(upload_to='media', null=True)
 
     def __str__(self):
@@ -31,6 +32,7 @@ class Slider(models.Model):
     title = models.CharField(max_length=400)
     image = models.ImageField(upload_to='media')
     url = models.URLField(blank=True)
+    status = models.CharField(choices=STATUS, max_length=400, blank=True)
     rank = models.IntegerField(default=1)
 
     def __str__(self):
