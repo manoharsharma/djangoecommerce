@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+from django.urls import reverse
+
 LABELS = (('new', 'new'), ('hot', 'hot'), ('sale', 'sale'), ('', 'default'))
 STOCK = (('In Stock', 'In Stock'), ('Out of Stock', 'Out of Stock'))
 STATUS = (('active', 'active'), ('inactive', 'inactive'))
@@ -26,6 +28,9 @@ class SubCategory(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_cat_url(self):
+        return reverse('home:subcategory', kwargs={'slug': self.slug})
 
 
 class Slider(models.Model):
@@ -63,6 +68,9 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_cat_url(self):
+        return reverse('home:detail', kwargs={'slug': self.slug})
 
 class ContactInfo(models.Model):
     name = models.CharField(max_length=400)
